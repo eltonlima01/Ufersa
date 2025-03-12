@@ -23,11 +23,11 @@ int main(){
 
     Tigela tig0 = {"Cheia", "Sopa"}, *tig1 = &tig0;
 
-    printf("[TIGELA]\nAlimento: %s\nEstado: %s\n", tig0.Alimento, tig0.Estado);
+    printf("[TIGELA ANTES DA JANTA]\nAlimento: %s\nEstado: %s\n", tig0.Alimento, tig0.Estado);
 
     Fome(tig1);
 
-    printf("[TIGELA]\nAlimento: %s\nEstado: %s\n", tig0.Alimento, tig0.Estado);    
+    printf("[TIGELA DEPOIS DA JANTA]\nAlimento: %s\nEstado: %s\n", tig0.Alimento, tig0.Estado);    
 
     return 0;
 }
