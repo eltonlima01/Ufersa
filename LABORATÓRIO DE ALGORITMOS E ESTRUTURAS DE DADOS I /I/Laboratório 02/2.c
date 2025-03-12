@@ -8,19 +8,34 @@ typedef struct{
 
 }Peixe;
 
+void f(Peixe P);
+void f0(Peixe *P);
+
 int main(){
 
 	Peixe Nemo = {"Peixe-palhaço", 100, 12};
 
 	Peixe *Ponteiro = &Nemo;
 
-	printf("[PEIXE]\nTipo: %s;\nPeso: %.2f(g);\nComprimento: %i(cm).\n",
-	Nemo.Tipo, Nemo.Peso, Nemo.Comprimento);
+	f(Nemo);
 
 	putchar('\n');
 
-	printf("[PEIXE]\nTipo: %s;\nPeso: %.2f(g);\nComprimento: %i(cm).\n",
-	Ponteiro->Tipo, Ponteiro->Peso, Ponteiro->Comprimento);
+	f0(Ponteiro);
 
 	return 0;
+}
+
+void f(Peixe P){
+
+	printf("[PEIXE]\nTipo: %s;\nPeso: %.2f(g);\nComprimento: %i(cm).\n",
+	P.Tipo, P.Peso, P.Comprimento);
+
+}
+
+void f0(Peixe *P){
+
+	printf("[PEIXE]\nTipo: %s;\nPeso: %.2f(g);\nComprimento: %i(cm).\n",
+	P->Tipo, P->Peso, P->Comprimento);
+
 }
