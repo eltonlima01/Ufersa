@@ -3,41 +3,34 @@
 
 typedef union {
     struct {
-        uint8_t R, G, B, A;
-    };
-    uint32_t Intensidade;
-} Cor;
+        uint8_t r, g, b, a;
+    } rgba;
+    uint32_t value;
+} Color;
 
-void readColor(Cor *c) {
-    printf("Digite uma cor no formato\nRGBA: ");
-    scanf("%hhu %hhu %hhu %hhu", &c->R, &c->G, &c->B, &c->A);
+void readColorRGBA(Color *color) {
+    printf("Digite uma cor no formato RGBA: ");
+    scanf("%hhu %hhu %hhu %hhu", &color->rgba.r, &color->rgba.g, &color->rgba.b, &color->rgba.a);
 }
 
-void readIColor(Cor *c) {
-    printf("Int32: ");
-    scanf("%u", &c->Intensidade);
+void readColorInt32(Color *color) {
+    printf("Digite uma cor no formato Int32: ");
+    scanf("%u", &color->value);
 }
 
-void showColor(const Cor *c) {
-    printf("Cor (RGBA): (%u, %u, %u, %u)\n", c->R, c->G, c->B, c->A);
-    printf("Inteiro 32 bits: %u (0x%X)\n", c->Intensidade, c->Intensidade);
+void printColor(const Color *color) {
+    printf("RGBA: %u %u %u %u\n", color->rgba.r, color->rgba.g, color->rgba.b, color->rgba.a);
+    printf("Int32: %u\n", color->value);
 }
 
 int main() {
-
-    Cor cor;
-
-    readColor(&cor);
-
-    //printf("\nCor:\n");
-
-    showColor(&cor);
-
-    readIColor(&cor);
-
-    //printf("\nCor:\n");
-
-    showColor(&cor);
-
+    Color color;
+    
+    readColorRGBA(&color);
+    printColor(&color);
+    
+    readColorInt32(&color);
+    printColor(&color);
+    
     return 0;
 }
