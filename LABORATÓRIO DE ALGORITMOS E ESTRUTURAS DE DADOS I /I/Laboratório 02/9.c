@@ -26,7 +26,7 @@ int main(){
 
     scanf("%i%i", &hour.Horas, &hour.Minutos);
 
-    while((hour.Horas > 23) || (hour.Horas < 0) || (hour.Minutos > 59) || (hour.Horas < 0)){
+    while((hour.Horas > 23) || (hour.Horas < 0) || (hour.Minutos > 59) || (hour.Minutos < 0)){
 
         if((hour.Horas > 23) || (hour.Horas < 0)){
 
@@ -34,7 +34,7 @@ int main(){
 
             scanf("%i", &hour.Horas);
 
-        }else if((hour.Minutos > 59) || (hour.Horas < 0)){
+        }else if((hour.Minutos > 59) || (hour.Minutos < 0)){
 
             printf("%i minuto(s) é um horário inválido!\nTente novamente: ", hour.Minutos);
 
@@ -46,7 +46,7 @@ int main(){
 
     MostrarHorario(ptr);
 
-    printf("Seu relógio está atrasado, o horário correto é: %i:%i\n", hour.Horas, hour.Minutos);
+    printf("Seu relógio está atrasado, o horário correto é: %02i:%02i\n", hour.Horas, hour.Minutos);
 
     return 0;
 }
