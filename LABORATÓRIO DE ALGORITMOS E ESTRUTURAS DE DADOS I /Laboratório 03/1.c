@@ -10,39 +10,45 @@ nota de dois alunos e em seguida mostre essas notas usando cout.
 
 int main(){
 
-    int num;
+    int numero_alunos;
 
     printf("Digite o número de alunos (mínimo 2): ");
-    scanf("%i", &num);
+    scanf("%i", &numero_alunos);
+    putchar('\n');
 
-    while(num < 2){
+    while(numero_alunos < 2){
 
-        putchar('\n');
         printf("[ERRO]: Mínimo 2 alunos(as).\nTente novamente: ");
-        scanf("%i", &num);
+        scanf("%i", &numero_alunos);
+
+        if(numero_alunos == 2){
+            putchar('\n');
+        }
+
+    }
+
+    float *nota_final = (float*)malloc(numero_alunos*sizeof(float));
+
+    printf("Digite as notas dos (%i) alunos(as):\n", numero_alunos);
+
+    for(int z=0; z<numero_alunos; z=z+1){
+
+        printf("(%i/%i): ", (z+1), numero_alunos);
+        scanf("%f", &nota_final[z]);
 
     }
 
     putchar('\n');
 
-    float *notas = (float*)malloc(num*sizeof(float));
-
-    printf("Digite as notas dos (%i) alunos(as):\n", num);
-
-    for(int i=0; i<num; i++){
-
-        printf("(%i/%i): ", (i+1), num);
-        scanf("%f", &notas[i]);
-
-    }
-
     printf("As notas digitadas foram ");
 
-    for(int i=0; i<num; i++){
-        (i == (num-1)) ? printf("(%.2f).\n", notas[i]) : printf("(%.2f), ", notas[i]);
+    int a = numero_alunos - 1;
+
+    for(int z=0; z<numero_alunos; z++){
+        (z == (a)) ? printf("e (%.2f).\n", nota_final[z]) : printf("(%.2f), ", nota_final[z]);
     }
 
-    free(notas);
+    free(nota_final);
 
     return 0;
 }
