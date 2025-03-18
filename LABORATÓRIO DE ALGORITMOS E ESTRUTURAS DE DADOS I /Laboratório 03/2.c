@@ -10,28 +10,32 @@ registro.
 
 struct balao{
 
-    float diametro; // Diâmetro em metros
-    char marca[20]; // Nome da marca
-    int modelo; // Número do modelo
+    float diametro; // diâmetro em metros
+    char marca[20]; // nome da marca
+    int modelo; // número do modelo
 
 };
 
 int main(){
 
-    struct balao Led, *Zeppelin = (struct balao*)malloc(sizeof(struct balao));
+    struct balao *Led_Zeppelin = (struct balao*)malloc(sizeof(struct balao));
 
-    printf("[BALÃO] Digite:\n- O diâmetro do balão: ");
-    scanf("%f", &Zeppelin->diametro); getchar();
+    printf("[BALÃO]\nDiâmetro do balão (em metros): ");
+    scanf("%f", &Led_Zeppelin->diametro); getchar();
+    putchar('\n');
+    
+    printf("Nome da marca do balão: ");
+    scanf("%[^\n]", Led_Zeppelin->marca);
+    putchar('\n');
 
-    printf("- Marca do balão: ");
-    scanf("%[^\n]", Zeppelin->marca);
+    printf("Número do modelo do balão: ");
+    scanf("%i", &Led_Zeppelin->modelo);
+    putchar('\n');
 
-    printf("- Modelo do balão: ");
-    scanf("%i", &Zeppelin->modelo);
+    printf("[BALÃO]\nDiâmetro: (%.2f)m\nMarca: %s\nModelo: %i\n",
+    Led_Zeppelin->diametro, Led_Zeppelin->marca, Led_Zeppelin->modelo);
 
-    printf("[BALÃO]\nDiâmetro: (%.2f)m\nMarca: %s\nModelo: (%i)\n", Zeppelin->diametro, Zeppelin->marca, Zeppelin->modelo);
-
-    free(Zeppelin);
+    free(Led_Zeppelin);
 
     return 0;
 }
