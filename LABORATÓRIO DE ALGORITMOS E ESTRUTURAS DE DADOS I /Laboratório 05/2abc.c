@@ -10,7 +10,7 @@ c) Array com 1000000
 #include<stdlib.h>
 #include<time.h>
 
-const int Tamanho = 1000;
+const int Tamanho = 1000; // 1000 para A, 100.000 para B, 1.000.000 para C
 
 void AleatoriezarVetor(int Vetor[]);
 void ExibirVetor(int Vetor[]);
@@ -94,7 +94,7 @@ int BuscaSequencial(int Vetor[], int Chave){
     for(int i=0; i<Tamanho; i++){
 
         if(Vetor[i] == Chave){
-            return i;
+            return Vetor[i];
         }
 
     }
@@ -112,7 +112,7 @@ int BuscaBinaria(int Vetor[], int Chave){
         int Meio = Esquerda + (Direita - Esquerda) / 2;
 
         if(Vetor[Meio] == Chave){
-            return Meio;
+            return Vetor[Meio];
         }
 
         if(Vetor[Meio] < Chave){
