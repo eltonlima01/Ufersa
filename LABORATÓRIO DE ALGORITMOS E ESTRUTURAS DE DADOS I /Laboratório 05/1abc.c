@@ -30,7 +30,7 @@ int main(){
 
     AleatoriezarVetor(Vetor);
 
-    printf("[Implementando algoritmos de ordenação em um vetor de %i elementos.]\n\n[BUBBLE SORT] Antes:\n\n", Tamanho);
+    printf("[Implementando algoritmos de ordenação (Bubble Sort, Insertion Sort, Merge Sort e Quick Sort) em um vetor de %i elementos.]\n\n[BUBBLE SORT] Antes:\n\n", Tamanho);
     ExibirVetor(Vetor);
 
     Inicio = clock();

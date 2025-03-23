@@ -193,6 +193,9 @@ void Merge(char Vetor[], int Esquerda, int Meio, int Direita){
 
     }
 
+    free(Esq);
+    free(Dir);
+
 }
 
 void MergeSort(char Vetor[], int Esquerda, int Direita){
