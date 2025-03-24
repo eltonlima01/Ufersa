@@ -11,7 +11,7 @@ c) Array com 1000000 elementos
 #include<stdlib.h>
 #include<time.h>
 
-const int Tamanho = 1000; // 1000 para A, 100.000 para B, 1.000.000 para C
+const int Tamanho = 1000000; // 1000 para A, 100.000 para B, 1.000.000 para C
 
 void BubbleSort(int Vetor[]);
 void InsertionSort(int Vetor[]);
@@ -31,21 +31,21 @@ int main(){
     AleatoriezarVetor(Vetor);
 
     printf("[Implementando algoritmos de ordenação (Bubble Sort, Insertion Sort, Merge Sort e Quick Sort) em um vetor de %i elementos.]\n\n[BUBBLE SORT] Antes:\n\n", Tamanho);
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     Inicio = clock();
     BubbleSort(Vetor);
     Fim = clock();
 
     printf("Depois:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     printf("Tempo de execução: (%.4f)s\n\n", ((double)(Fim - Inicio)/CLOCKS_PER_SEC));
 
     AleatoriezarVetor(Vetor);
 
     printf("[INSERTION SORT] Antes:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     
     Inicio = clock();
@@ -53,35 +53,35 @@ int main(){
     Fim = clock();
         
     printf("Depois:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     printf("Tempo de execução: (%.4f)s\n\n", ((double)(Fim - Inicio)/CLOCKS_PER_SEC));
 
     AleatoriezarVetor(Vetor);
 
     printf("[MERGE SORT] Antes:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     Inicio = clock();
     MergeSort(Vetor, 0, (Tamanho-1));
     Fim = clock();
 
     printf("Depois:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     printf("Tempo de execução: (%.4f)s\n\n", ((double)(Fim - Inicio)/CLOCKS_PER_SEC));
 
     AleatoriezarVetor(Vetor);
 
     printf("[Quick Sort] Antes:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     Inicio = clock();
     QuickSort(Vetor, 0, (Tamanho-1));
     Fim = clock();
 
     printf("Depois:\n\n");
-    ExibirVetor(Vetor);
+    //ExibirVetor(Vetor);
 
     printf("Tempo de execução: (%.4f)s\n\n", ((double)(Fim - Inicio)/CLOCKS_PER_SEC));
 

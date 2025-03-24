@@ -10,11 +10,11 @@ c) Array com 1000000
 #include<stdlib.h>
 #include<time.h>
 
-const int Tamanho = 1000; // 1000 para A, 100.000 para B, 1.000.000 para C
+const int Tamanho = 1000000; // 1000 para A, 100.000 para B, 1.000.000 para C
 
 void AleatoriezarVetor(int Vetor[]);
 void ExibirVetor(int Vetor[]);
-void OrdenarVetor(int Vetor[]);
+void QuickSort(int Vetor[], int Esquerda, int Direita);
 
 int BuscaSequencial(int Vetor[], int Chave);
 int BuscaBinaria(int Vetor[], int Chave);
@@ -26,7 +26,7 @@ int main(){
 
     int Vetor[Tamanho];
     AleatoriezarVetor(Vetor);
-    OrdenarVetor(Vetor);
+    QuickSort(Vetor, 0, (Tamanho-1));
     int Chave0 = Vetor[rand()%Tamanho], Chave1;
 
     printf("[Implementando algoritmos de busca (Sequencial e Binária) em um vetor de %i elementos.]\nElementos do vetor:\n\n", Tamanho);
@@ -67,23 +67,38 @@ void ExibirVetor(int Vetor[]){
 
 }
 
-void OrdenarVetor(int Vetor[]){
+int Quick(int Vetor[], int Esquerda, int Direita){
 
-    int Chave;
+    int Pivo = Vetor[Direita], i = (Esquerda - 1);
 
-    for(int a=1, z; a<Tamanho; a++){
+    for(int j = Esquerda; j < Direita; j++){
 
-        Chave = Vetor[a];
-        z = a - 1;
+        if(Vetor[j] < Pivo){
 
-        while((z >= 0) && (Vetor[z] > Chave)){
+            i++;
 
-            Vetor[z+1] = Vetor[z];
-            z = z - 1;
+            int Tmprr = Vetor[i];
+            Vetor[i] = Vetor[j];
+            Vetor[j] = Tmprr;
 
         }
-        
-        Vetor[z+1] = Chave;
+
+    }
+
+    int Tmprr = Vetor[i + 1];
+    Vetor[i + 1] = Vetor[Direita];
+    Vetor[Direita] = Tmprr;
+
+    return (i + 1);
+}
+
+void QuickSort(int Vetor[], int Esquerda, int Direita){
+
+    if(Esquerda < Direita){
+
+        int Pivo = Quick(Vetor, Esquerda, Direita);
+        QuickSort(Vetor, Esquerda, (Pivo - 1));
+        QuickSort(Vetor, (Pivo + 1), Direita);
 
     }
 
