@@ -1,11 +1,6 @@
 /*
-Implemente uma Lista Encadeada Simples, contendo os seguintes
-métodos:
-● inserir_no_inicio(valor): Adiciona um nó no início da lista.
-● inserir_no_fim(valor): Adiciona um nó no final da lista.
-● remover(valor): Remove um nó específico.
-● buscar(valor): Retorna se o elemento está presente na lista.
-● exibir(): Exibe todos os elementos da lista.
+Baseado na questão anterior, implemente uma lista duplamente
+encadeada com as mesma funções da questão anterior.
 */
 
 #include<stdio.h>
@@ -16,23 +11,24 @@ métodos:
 typedef struct No{
 
     int Valor;
-    struct No *Prox;
+    struct No *Prox, *Ant;
 
 }No;
 
 typedef struct{
-    No *Cabeca;
-}ListaEncadeada;
+    No *Cabeca, *Pe;
+}ListaDuplamenteEncadeada;
 
-void InserirInicio(ListaEncadeada *Lista, int Valor);
-void InserirFim(ListaEncadeada *Lista, int Valor);
-void Exibir(ListaEncadeada *Lista);
-int Buscar(ListaEncadeada *Lista, int Valor);
-void Remover(ListaEncadeada *Lista, int Valor);
+void InserirInicio(ListaDuplamenteEncadeada *Lista, int Valor);
+void InserirFim(ListaDuplamenteEncadeada *Lista, int Valor);
+void Exibir(ListaDuplamenteEncadeada *Lista);
+int Buscar(ListaDuplamenteEncadeada *Lista, int Valor);
+void Remover(ListaDuplamenteEncadeada *Lista, int Valor);
+void Liberar(ListaDuplamenteEncadeada *Lista);
 
 int main(){
 
-    ListaEncadeada *Lista = (ListaEncadeada*)malloc(sizeof(ListaEncadeada));
+    ListaDuplamenteEncadeada *Lista = (ListaDuplamenteEncadeada*)malloc(sizeof(ListaDuplamenteEncadeada));
     Lista->Cabeca = NULL;
 
     int Valor;
@@ -95,54 +91,61 @@ int main(){
 
     }
 
+    Liberar(Lista);
     free(Lista);
     return 0;
 }
 
-void InserirInicio(ListaEncadeada *Lista, int Valor){
+void InserirInicio(ListaDuplamenteEncadeada *Lista, int Valor){
 
     No *Novo = (No*)malloc(sizeof(No));
 
     Novo->Valor = Valor;
     Novo->Prox = Lista->Cabeca;
+    Novo->Ant = NULL;
+
+    if(Lista->Cabeca != NULL){
+
+        Lista->Cabeca->Ant = Novo;
+
+    }else{
+
+        Lista->Pe = Novo;
+
+    }
+
     Lista->Cabeca = Novo;
 
 }
 
-void InserirFim(ListaEncadeada *Lista, int Valor){
+void InserirFim(ListaDuplamenteEncadeada *Lista, int Valor){
 
     No *Novo = (No*)malloc(sizeof(No));
 
     Novo->Valor = Valor;
     Novo->Prox = NULL;
+    Novo->Ant = Lista->Pe;
 
-    if(Lista->Cabeca == NULL){
+    if(Lista->Pe != NULL){
+
+        Lista->Pe->Prox = Novo;
+        
+    }else{
 
         Lista->Cabeca = Novo;
 
-    }else{
-
-        No *Tmprr = Lista->Cabeca;
-
-        while(Tmprr->Prox != NULL){
-            Tmprr = Tmprr->Prox;
-        }
-
-        Tmprr->Prox = Novo;
-
     }
+
+    Lista->Pe = Novo;
 
 }
 
-void Remover(ListaEncadeada *Lista, int Valor){
+void Remover(ListaDuplamenteEncadeada *Lista, int Valor){
 
-    No *Atual = Lista->Cabeca, *Anterior = NULL;
+    No *Atual = Lista->Cabeca;
 
     while((Atual != NULL) && (Atual->Valor != Valor)){
-
-        Anterior = Atual;
         Atual = Atual->Prox;
-
     }
 
     if(Atual == NULL){
@@ -152,49 +155,76 @@ void Remover(ListaEncadeada *Lista, int Valor){
 
     }
 
-    if(Anterior == NULL){
+    if(Atual->Ant != NULL){
 
-        Lista->Cabeca = Atual->Prox;
+        Atual->Ant->Prox = Atual->Prox;
 
     }else{
 
-        Anterior->Prox = Atual->Prox;
+        Lista->Cabeca = Atual->Prox;
+
+    }
+
+    if(Atual->Prox != NULL){
+
+        Atual->Prox->Ant = Atual->Ant;
+
+    }else{
+
+        Lista->Pe = Atual->Ant;
 
     }
 
     free(Atual);
 }
 
-int Buscar(ListaEncadeada *Lista, int Valor){
+int Buscar(ListaDuplamenteEncadeada *Lista, int Valor){
 
-    No *Tmprr = Lista->Cabeca;
+    No *Atual = Lista->Cabeca;
 
-    while(Tmprr != NULL){
+    while(Atual != NULL){
 
-        if(Tmprr->Valor == Valor){
+        if(Atual->Valor == Valor){
             return 1;
         }
 
-        Tmprr = Tmprr->Prox;
+        Atual = Atual->Prox;
 
     }
 
     return 0;
 }
 
-void Exibir(ListaEncadeada *Lista){
+void Exibir(ListaDuplamenteEncadeada *Lista){
 
-    No *Tmprr = Lista->Cabeca;
+    No *Atual = Lista->Cabeca;
 
-    if(Tmprr == NULL){
+    if(Atual == NULL){
         puts("Lista vazia!");
     }
 
-    while(Tmprr != NULL){
+    while(Atual != NULL){
 
-        printf("- %i;\n", Tmprr->Valor);
-        Tmprr = Tmprr->Prox;
+        printf("- %i;\n", Atual->Valor);
+        Atual = Atual->Prox;
 
     }
+
+}
+
+void Liberar(ListaDuplamenteEncadeada *Lista){
+
+    No *Atual = Lista->Cabeca;
+
+    while(Atual != NULL){
+
+        No *Proximo = Atual->Prox;
+        free(Atual);
+        Atual = Proximo;
+
+    }
+
+    Lista->Cabeca = NULL;
+    Lista->Pe = NULL;
 
 }
