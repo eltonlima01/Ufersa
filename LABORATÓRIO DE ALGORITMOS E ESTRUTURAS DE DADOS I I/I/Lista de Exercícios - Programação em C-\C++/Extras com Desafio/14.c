@@ -4,7 +4,7 @@
 
 int main ()
 {
-    char string [100], ch = 'A';
+    char string [100];
     int stringLenght;
 
     puts ("[CIFRA DE CÉSAR]\nDigite a mensagem a ser criptografada:");
