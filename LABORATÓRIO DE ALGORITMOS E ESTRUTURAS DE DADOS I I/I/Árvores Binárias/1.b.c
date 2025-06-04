@@ -1,7 +1,3 @@
-/*
-Implemente as func¸ ˜oes de criac¸ ˜ao, remoc¸ ˜ao, busca e inserc¸ ˜ao.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,14 +7,7 @@ typedef struct Node
     struct Node *left, *right;
 } Node;
 
-int main ()
-{
-    Node *root = malloc (sizeof (Node));
-
-    return 0;
-}
-
-Node *new_node (int data)
+Node *create_node (int data)
 {
     Node *node = malloc (sizeof (Node));
 
@@ -55,7 +44,7 @@ Node *search_node (Node *node, int data)
 
 Node *insert_node (Node *node, int data)
 {
-    if (!node) { return new_node (data); }
+    if (!node) { return create_node (data); }
 
     if (data < node->data) { node->left = insert_node (node->left, data); }
 

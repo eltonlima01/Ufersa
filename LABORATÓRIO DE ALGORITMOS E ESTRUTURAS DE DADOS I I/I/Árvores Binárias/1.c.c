@@ -1,7 +1,3 @@
-/*
-Teste as func¸ ˜oes com diferentes casos de teste.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,14 +7,22 @@ typedef struct Node
     struct Node *left, *right;
 } Node;
 
-Node *new_node (int data);
+Node *create_node (int data);
 void remove_node (Node *node);
 Node *search_node (Node *node, int data);
 Node *insert_node (Node *node, int data);
 
 int main (int argc, char *argv [])
 {
-    int n [] = {atoi (argv [1]), atoi (argv [2]), atoi (argv [3])};
+    int n [] =
+    {
+        atoi (argv [1]),
+        atoi (argv [2]),
+        atoi (argv [3]),
+        atoi (argv [4]),
+        atoi (argv [5]),
+        atoi (argv [6])
+    };
 
     Node *root = NULL;
 
@@ -28,12 +32,23 @@ int main (int argc, char *argv [])
 
     printf ("{%i, ", root->data);
     (root->left == NULL) ? printf ("null, ") : printf ("%i, ", root->left->data);
-    (root->right == NULL) ? printf ("null}\n") : printf ("%i}\n", root->right->data) ;
+    (root->right == NULL) ? printf ("null}\n") : printf ("%i}\n", root->right->data);
+
+    remove_node (root);
+    root = NULL;
+
+    root = insert_node (root, n [3]);
+    root = insert_node (root, n [4]);
+    root = insert_node (root, n [5]);
+
+    printf ("{%i, ", root->data);
+    (root->left == NULL) ? printf ("null, ") : printf ("%i, ", root->left->data);
+    (root->right == NULL) ? printf ("null}\n") : printf ("%i}\n", root->right->data);
 
     return 0;
 }
 
-Node *new_node (int data)
+Node *create_node (int data)
 {
     Node *node = malloc (sizeof (Node));
 
@@ -63,14 +78,14 @@ Node *search_node (Node *node, int data)
 
     if (node->data == data) { return node; }
 
-    if (node->data < data) { return search_node (node->left, data); }
+    if (data < node->data) { return search_node (node->left, data); }
 
-    if (node->data > data) { return search_node (node->right, data); }
+    if (data < node->data) { return search_node (node->right, data); }
 }
 
 Node *insert_node (Node *node, int data)
 {
-    if (!node) { return new_node (data); }
+    if (!node) { return create_node (data); }
 
     if (data < node->data) { node->left = insert_node (node->left, data); }
 
