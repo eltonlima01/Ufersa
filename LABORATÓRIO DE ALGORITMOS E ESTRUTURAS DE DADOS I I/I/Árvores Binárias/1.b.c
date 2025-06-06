@@ -45,9 +45,8 @@ Node *insert_node (Node *node, int data)
 {
     if (!node) { return create_node (data); }
 
-    if (data < node->data) { node->left = insert_node (node->left, data); }
-
     if (data >= node->data) { node->right = insert_node (node->right, data); }
+    else { node->left = insert_node (node->left, data); }
 
     return node;
 }

@@ -1,5 +1,5 @@
-typedef struct Node 
+typedef struct No 
 {
-    int data;
-    struct Node *left, *right;
-} Node;
+    int dado;
+    struct No *esquerdo, *direito;
+} No;
