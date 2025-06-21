@@ -22,6 +22,7 @@ void show_table (hash table []);
 void insert_table (hash table [], int pos, int n);
 int search_table (hash table [], int n);
 void remove_table (hash table [], int n);
+void sleep ();
 
 void main ()
 {
@@ -35,6 +36,8 @@ void main ()
     {
         MENU;
         scanf ("%hi", &option);
+        getchar ();
+        putchar ('\n');
 
         switch (option)
         {
@@ -43,20 +46,21 @@ void main ()
                 scanf ("%i", &n);
 
                 position = hashing (n);
-
                 insert_table (table, position, n);
+                putchar ('\n');
             break;
 
             case 2:
-            puts ("[2 - Show table]");
+                puts ("[2 - Show table]");
                 show_table (table);
+                sleep ();
             break;
 
             case 3:
                 printf ("[3 - Remove from table]\n[Input]: ");
                 scanf ("%i", &n);
-
                 remove_table (table, n);
+                putchar ('\n');
             break;
         }
     }
@@ -103,7 +107,7 @@ void insert_table (hash table [], int pos, int n)
     }
     else
     {
-        puts ("[ERROR::Full table]");
+        puts ("\n[ERROR::Full table]");
     }
 }
 
@@ -137,6 +141,12 @@ void remove_table (hash table [], int n)
     }
     else
     {
-        printf ("[ERROR::No elements in %i]\n", position);
+        puts ("\n[ERROR::No corresponding elements]");
     }
+}
+
+void sleep ()
+{
+    puts ("\n[Press any key...]");
+    getchar ();
 }
