@@ -37,20 +37,16 @@ Node *search_node (Node *node, int data)
 
     if (node->data == data) { return node; }
 
-    if (node->data < data) { return search_node (node->left, data); }
-
-    if (node->data > data) { return search_node (node->right, data); }
+    if (node->data < data) { return search_node (node->right, data); }
+    else { return search_node (node->left, data); }
 }
 
 Node *insert_node (Node *node, int data)
 {
     if (!node) { return create_node (data); }
 
-    if (data < node->data) { node->left = insert_node (node->left, data); }
-
     if (data >= node->data) { node->right = insert_node (node->right, data); }
-
-    if (node->data == data) { return node; }
+    else { node->left = insert_node (node->left, data); }
 
     return node;
 }
